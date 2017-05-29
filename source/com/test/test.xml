@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Service>
+    <Header ServiceName="ServiceName" MsgLanguage="MsgLanguage">
+        <Version>Version</Version>
+        <CreateDateTime>2011-11-11 11:11:11</CreateDateTime>
+        <SenderCompId>SenderCompId</SenderCompId>
+        <TargetCompId>TargetCompId</TargetCompId>
+    </Header>
+    <Output>
+        <Instruments>
+            <Instrument>
+                <Main>
+                    <SName>SName</SName>
+                    <LName>LName</LName>
+                </Main>
+                <Flags>
+                    <Flag>
+                        <Type>Type</Type>
+                        <Value>Value</Value>
+                    </Flag>
+                </Flags>
+            </Instrument>
+            <Instrument>
+                <Main>
+                    <SName>SName</SName>
+                    <LName>LName</LName>
+                </Main>
+                <Flags>
+                    <Flag>
+                        <Type>Type</Type>
+                        <Value>Value</Value>
+                    </Flag>
+                </Flags>
+            </Instrument>
+        </Instruments>
+    </Output>
+</Service>
+
