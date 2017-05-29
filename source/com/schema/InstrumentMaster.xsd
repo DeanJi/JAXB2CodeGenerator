@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+			xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+		  jaxb:version="1.0"
+		  xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc">
+	<xsd:annotation>
+		<xsd:appinfo>
+			<jaxb:globalBindings>
+				<xjc:simple />
+			</jaxb:globalBindings>
+		</xsd:appinfo>
+	</xsd:annotation>
+  
+	<!-- Header Start -->
+	<xsd:element name="Header" nillable="true">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Version" />
+				<xsd:element ref="CreateDateTime" />
+				<xsd:element ref="SenderCompId" />
+				<xsd:element ref="TargetCompId" />
+			</xsd:sequence>
+			<xsd:attribute name="MsgLanguage" use="required" type="xsd:string" />
+			<xsd:attribute name="ServiceName" use="required" type="xsd:string" />
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Version" type="xsd:string" nillable="true" />
+	<xsd:element name="CreateDateTime" type="xsd:string" nillable="true" />
+	<xsd:element name="SenderCompId" type="xsd:string" nillable="true" />
+	<xsd:element name="TargetCompId" type="xsd:string" nillable="true" />
+	<!-- Header End -->
+
+	<!-- Instrument Attributes Start -->
+	<xsd:element name="SName" type="xsd:string" nillable="true" />
+	<xsd:element name="LName" type="xsd:string" nillable="true" />
+	<xsd:element name="Type" type="xsd:string" nillable="true" />
+	<xsd:element name="Value" type="xsd:string" nillable="true" />
+	
+	<xsd:element name="Flag" nillable="true">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Type" />
+				<xsd:element ref="Value" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="Service">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Header" />
+				<xsd:element ref="Output" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Output" nillable="true">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Instruments" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Instruments" nillable="true">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Instrument" minOccurs="1" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Instrument" nillable="true">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Main" />
+				<xsd:element ref="Flags" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Main" nillable="true">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="SName" />
+				<xsd:element ref="LName" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="Flags" nillable="true">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Flag" minOccurs="1" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<!-- Instrument Attributes End -->
+
+</xsd:schema>
