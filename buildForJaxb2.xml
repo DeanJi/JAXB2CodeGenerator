@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="JAXBCodeGenerator" default="jaxbcompileall" basedir=".">
+    <description>
+        Ant script for compiling all xml schema file with JAXB Compiler.
+    </description>
+
+	<!-- set global properties for this build -->
+	<property name="COMMON_XSD_DIR" location="${basedir}/source/com/schema"/>
+	<property name="LIB_DIR" location="${basedir}/jaxb/lib"/>
+	
+	<path id="build.class.path">
+		<fileset dir="${LIB_DIR}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+    
+	<target name="jaxbcompileall">
+			<mkdir dir="${basedir}/JAXB2CodeGenerator/classes" />
+				
+			<taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
+					<classpath refid="build.class.path" />
+			</taskdef>
+	
+	
+			<xjc destdir="${basedir}/JAXB2CodeGenerator" schema="${COMMON_XSD_DIR}/InstrumentMaster.xsd" removeOldOutput="yes" package="com.jaxbclasses" >
+					<classpath refid="build.class.path" />
+			</xjc>
+								
+   			<javac srcdir="${basedir}/JAXB2CodeGenerator" destdir="${basedir}/JAXB2CodeGenerator/classes" 
+					fork="true" memoryinitialsize="128m" memorymaximumsize="256m" debug="${javac.debug}" optimize="${javac.optimize}">
+						<classpath refid="build.class.path" />
+			</javac>
+	      				
+			<jar destfile="${basedir}/JAXB2CodeGenerator.jar" update="false" manifest="${basedir}/META-INF/MANIFEST.MF">
+				<fileset dir="${basedir}/JAXB2CodeGenerator/classes" />
+			</jar>
+	</target>
+			
+    
+</project>
